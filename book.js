@@ -1,7 +1,5 @@
 const express = require('express');
 const mysql = require('mysql2');
-const bodyParser = require('body-parser');
-
 
 const app = express();
 app.use(express.json());
@@ -53,22 +51,19 @@ app.get('/crud', async (req, res)=>{
      }
 });
 
-
-
-
 app.put('/crud/:id', async (req, res)=>{
 	try{
 
-		const {id } =req.params;
+		const {id_book } =req.params;
 		const { name, author, isbn } = req.body;
 		
 		const [result] = await db.promise().query(
-			'UPDATE book  SET name = ?, author = ?, isbn = ? WHERE id = ?',
+			'UPDATE book  SET name = ?, author = ?, isbn = ? WHERE id_book = ?',
 			[name, author, isbn, id]
 	     );
 	res.status(200).json({
 	  message: "Book updated",
-	  id,
+	  id_book,
 	  name,
 	  author,
 	  isbn
@@ -80,11 +75,11 @@ app.put('/crud/:id', async (req, res)=>{
 	}	
 });
 
-app.delete('/crud/:id', async (req, res)=>{
+app.delete('/crud/:id_book', async (req, res)=>{
 	try {
-		const {id } =req.params;
+		const {id_book } =req.params;
 		const [result] = await db.promise().query(
-			'DELETE FROM book WHERE id = ?',
+			'DELETE FROM book WHERE id_book = ?',
 			[id]
 		);
 	} catch (err) {
