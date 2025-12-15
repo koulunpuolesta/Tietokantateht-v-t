@@ -12,8 +12,8 @@ console.log("Server listening in http://localhost:3000")
 
  const db = mysql.createConnection({
 	host: 'localhost',
-	user: 'cruduser',
-	password: 'salasana124',
+	user: 'cruduser', //vaihda tämä
+	password: 'salasana124', //vaihda tämä
 	database: 'crud'
 });
 
